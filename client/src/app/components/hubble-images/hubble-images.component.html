@@ -1,10 +1,35 @@
 <section class="section">
-    <div class="container">
-        <div class="columns">
-            <app-hubble-single-image></app-hubble-single-image>    
+    <div class="container hubble-image-list">
+        <p class="is-size-4 has-text-left">Result Count: {{ hubbleResources.length }}</p>
+        <div class="columns is-multiline">
+            <app-hubble-single-image *ngFor="let image of hubbleResources.slice(0, 6)" [name]="image.name"></app-hubble-single-image>    
         </div>
         <div class="columns">
-            <app-hubble-single-image></app-hubble-single-image>
+            <div class="column">
+                <ul class="pagination-list" *ngIf="hubbleResources.length">
+                    <li>
+                      <a class="pagination-link" aria-label="Goto page 1">1</a>
+                    </li>
+                    <li *ngIf="numPages > 2">
+                      <a class="pagination-link" aria-label="Goto page 2">2</a>
+                    </li>
+                    <li *ngIf="numPages > 3">
+                      <a class="pagination-link" aria-label="Goto page 3">3</a>
+                    </li>
+                    <li *ngIf="numPages > 4">
+                      <span class="pagination-ellipsis">&hellip;</span>
+                    </li>
+                    <li *ngIf="numPages > 1">
+                      <a class="pagination-link">{{ numPages }}</a>
+                    </li>
+                  </ul>
+            </div>
+            <div class="column"></div>
+            <div class="column has-text-center pagination-buttons">
+
+                <a class="pagination-previous button is-info">Previous</a>
+                <a class="pagination-next button is-primary">Next page</a>
+            </div>
         </div>
     </div>
   </section>
